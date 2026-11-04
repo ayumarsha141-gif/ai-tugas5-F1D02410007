@@ -59,12 +59,35 @@ Langkah: memori diisi fakta yang dijawab "ya"; ulangi: cari aturan yang syaratny
 
 Jalankan `python Gui.py` (atau `python Main.py`), isi jawaban sesuai tabel, lalu screenshot.
 
-| # | Jawaban "ya" | Kesimpulan yang diharapkan | Screenshot |
-|---|---|---|---|
-| 1 | pesan tak diminta, mengaku instansi, desakan waktu, diminta OTP/PIN/password | impersonation, RISIKO TINGGI | ![Kasus 1](screenshot/kasus1.png) |
-| 2 | hanya "ada tautan" | tidak ada kesimpulan (kasus negatif) | ![Kasus 2](screenshot/kasus2.png) |
-| 3 | pesan tak diminta, menang hadiah, diminta biaya tambahan, ada tautan, diminta OTP/PIN/password | hadiah palsu, phishing, RISIKO TINGGI | ![Kasus 3](screenshot/kasus3.png) |
+| # | Jawaban "ya" | Kesimpulan yang diharapkan |
+|---|---|---|
+| 1 | pesan tak diminta, mengaku instansi, desakan waktu, diminta OTP/PIN/password | impersonation, RISIKO TINGGI |
+| 2 | hanya "ada tautan" | tidak ada kesimpulan (kasus negatif) |
+| 3 | pesan tak diminta, menang hadiah, diminta biaya tambahan, ada tautan, diminta OTP/PIN/password | hadiah palsu, phishing, RISIKO TINGGI |
 
+### Kasus 1: impersonation (menghasilkan kesimpulan)
+
+![Kasus 1](screenshot/kasus1.png)
+
+Bagian bawah hasil (saran tindakan dan batas keberlakuan):
+
+![Kasus 1 bagian bawah](screenshot/kasus1b.png)
+
+### Kasus 2: negatif (tidak menghasilkan kesimpulan)
+
+![Kasus 2](screenshot/kasus2.png)
+
+Tidak ada kesimpulan karena satu-satunya aturan yang memakai tautan (R4) juga mensyaratkan "pesan tak diminta".
+
+### Kasus 3: hadiah palsu dan phishing (menghasilkan kesimpulan)
+
+![Kasus 3](screenshot/kasus3.png)
+
+Bagian bawah hasil (saran tindakan dan batas keberlakuan):
+
+![Kasus 3 bagian bawah](screenshot/kasus3b.png)
+
+Kasus 4 sampai 6 (lowongan kerja, belanja online, investasi ilegal) dicek otomatis oleh `Test.py`.
 Kasus 2 tidak menghasilkan kesimpulan karena satu-satunya aturan yang memakai tautan (R4) juga mensyaratkan "pesan tak diminta". Kasus 4 sampai 6 (lowongan kerja, belanja online, investasi ilegal) dicek otomatis oleh `Test.py`.
 
 ## Batas keberlakuan
