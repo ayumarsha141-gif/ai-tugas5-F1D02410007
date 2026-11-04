@@ -67,7 +67,7 @@ Jalankan `python Gui.py` (atau `python Main.py`), isi jawaban sesuai tabel, lalu
 
 ### Kasus 1: impersonation (menghasilkan kesimpulan)
 
-![Kasus 1](screenshot/kasus1.png)
+![Kasus 1](screenshot/kasus1a.png)
 
 Bagian bawah hasil (saran tindakan dan batas keberlakuan):
 
@@ -81,7 +81,7 @@ Tidak ada kesimpulan karena satu-satunya aturan yang memakai tautan (R4) juga me
 
 ### Kasus 3: hadiah palsu dan phishing (menghasilkan kesimpulan)
 
-![Kasus 3](screenshot/kasus3.png)
+![Kasus 3](screenshot/kasus3a.png)
 
 Bagian bawah hasil (saran tindakan dan batas keberlakuan):
 
