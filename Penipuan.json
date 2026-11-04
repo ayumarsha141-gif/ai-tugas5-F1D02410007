@@ -1,0 +1,56 @@
+{
+  "judul": "Deteksi pesan penipuan digital (scam dan phishing)",
+  "batas": "Aturan berasal dari 2 sumber resmi: booklet edukasi Satgas PASTI OJK (kondisi Indonesia, 2026) dan peringatan konsumen FTC Amerika Serikat. Aturan hanya mencakup 6 pola penipuan umum dan tidak menggantikan verifikasi ke pihak resmi. Hasilnya saran awal, bukan keputusan akhir.",
+  "sumber": {
+    "S1": "Waspada Penipuan (Scam) Mengintai Kita, Ayo Lawan dan Hindari!, Satgas PASTI / Otoritas Jasa Keuangan (OJK), https://www.ojk.go.id/id/berita-dan-kegiatan/info-terkini/Documents/Pages/Booklet-Waspada-Penipuan-Scam-OJK/Booklet%20Waspada%20Penipuan%20Mengintai%20Kita%2c%20Ayo%20Lawan%20dan%20Hindari%21.pdf, diakses 4 Nov 2026",
+    "S2": "Protect yourself from phishing scams, Federal Trade Commission (FTC) Consumer Advice, https://consumer.ftc.gov/consumer-alerts/2025/04/protect-yourself-phishing-scams, diakses 4 Nov 2026"
+  },
+  "fakta": {
+    "pesan_tak_diminta": "Apakah pesan/telepon ini datang dari pihak yang tidak Anda hubungi lebih dulu?",
+    "mengaku_instansi": "Apakah pengirim mengaku dari bank, instansi pemerintah, marketplace, atau perusahaan resmi?",
+    "desakan_waktu": "Apakah Anda didesak bertindak segera (kondisi darurat, batas waktu sangat singkat)?",
+    "ancaman_denda_blokir": "Apakah ada ancaman denda atau pemblokiran akun/rekening?",
+    "minta_otp_pin_password": "Apakah Anda diminta memberikan OTP, PIN, atau password?",
+    "ada_tautan": "Apakah pesan memuat tautan (link) yang diminta untuk diklik?",
+    "kabar_menang_hadiah": "Apakah pesan mengabarkan Anda menang hadiah/undian yang tidak pernah Anda ikuti?",
+    "minta_biaya_tambahan": "Apakah Anda diminta membayar biaya administrasi atau pajak untuk menerima hadiah?",
+    "tawaran_kerja_pesan_pribadi": "Apakah ada tawaran kerja yang masuk lewat pesan pribadi?",
+    "minta_bayar_di_muka": "Apakah Anda diminta membayar/menyetor uang di awal?",
+    "harga_tak_wajar": "Apakah barang dijual jauh di bawah harga pasaran?",
+    "transfer_rekening_pribadi": "Apakah pembayaran diminta langsung ke rekening pribadi?",
+    "untung_tinggi_tanpa_risiko": "Apakah ditawarkan keuntungan besar dalam waktu singkat atau tanpa risiko?",
+    "izin_tak_terbukti": "Apakah izin penawar di regulator (misalnya OJK) tidak dapat dibuktikan?"
+  },
+  "aturan": [
+    {"id": "R1",  "jika": ["pesan_tak_diminta", "mengaku_instansi"], "mode": "dan",  "maka": "indikasi peniruan identitas", "sumber": ["S1"]},
+    {"id": "R2",  "jika": ["desakan_waktu", "ancaman_denda_blokir"], "mode": "atau", "maka": "ada tekanan psikologis", "sumber": ["S1"]},
+    {"id": "R3",  "jika": ["minta_otp_pin_password"], "mode": "dan", "maka": "ada permintaan data rahasia", "sumber": ["S1", "S2"]},
+    {"id": "R4",  "jika": ["ada_tautan", "pesan_tak_diminta"], "mode": "dan", "maka": "tautan mencurigakan", "sumber": ["S1", "S2"]},
+    {"id": "R5",  "jika": ["indikasi peniruan identitas", "ada permintaan data rahasia"], "mode": "dan", "maka": "penipuan mengaku pihak lain (impersonation)", "sumber": ["S1"]},
+    {"id": "R6",  "jika": ["indikasi peniruan identitas", "ada tekanan psikologis"], "mode": "dan", "maka": "penipuan mengaku pihak lain (impersonation)", "sumber": ["S1"]},
+    {"id": "R7",  "jika": ["kabar_menang_hadiah", "minta_biaya_tambahan"], "mode": "dan", "maka": "penipuan hadiah palsu", "sumber": ["S1"]},
+    {"id": "R8",  "jika": ["kabar_menang_hadiah", "tautan mencurigakan"], "mode": "dan", "maka": "penipuan hadiah palsu", "sumber": ["S1"]},
+    {"id": "R9",  "jika": ["tawaran_kerja_pesan_pribadi", "minta_bayar_di_muka"], "mode": "dan", "maka": "penipuan lowongan kerja", "sumber": ["S1"]},
+    {"id": "R10", "jika": ["tawaran_kerja_pesan_pribadi", "ada permintaan data rahasia"], "mode": "dan", "maka": "penipuan lowongan kerja", "sumber": ["S1"]},
+    {"id": "R11", "jika": ["harga_tak_wajar", "transfer_rekening_pribadi"], "mode": "dan", "maka": "penipuan belanja online", "sumber": ["S1"]},
+    {"id": "R12", "jika": ["untung_tinggi_tanpa_risiko", "izin_tak_terbukti"], "mode": "dan", "maka": "penipuan investasi ilegal", "sumber": ["S1"]},
+    {"id": "R13", "jika": ["tautan mencurigakan", "ada permintaan data rahasia"], "mode": "dan", "maka": "phishing (pencurian data login)", "sumber": ["S1", "S2"]},
+    {"id": "R14", "jika": ["penipuan mengaku pihak lain (impersonation)", "penipuan hadiah palsu", "penipuan lowongan kerja", "penipuan belanja online", "penipuan investasi ilegal", "phishing (pencurian data login)"], "mode": "atau", "maka": "RISIKO TINGGI: hentikan respons", "sumber": ["S1", "S2"]}
+  ],
+  "kesimpulan": [
+    "penipuan mengaku pihak lain (impersonation)",
+    "penipuan hadiah palsu",
+    "penipuan lowongan kerja",
+    "penipuan belanja online",
+    "penipuan investasi ilegal",
+    "phishing (pencurian data login)",
+    "RISIKO TINGGI: hentikan respons"
+  ],
+  "tindakan": {
+    "RISIKO TINGGI: hentikan respons": [
+      "Jangan klik tautan, jangan transfer, dan jangan bagikan OTP/PIN/password kepada siapa pun (S1).",
+      "Verifikasi lewat kontak resmi yang Anda cari sendiri, bukan dari pesan tersebut (S2).",
+      "Jika sudah telanjur transfer, segera lapor ke iasc.ojk.go.id atau Kontak OJK 157 (S1)."
+    ]
+  }
+}
