@@ -53,7 +53,7 @@ Langkah: memori diisi fakta yang dijawab "ya"; ulangi: cari aturan yang syaratny
 
 ## Tampilan aplikasi
 
-`gui.py` menampilkan 14 pertanyaan sebagai kartu yang dipilih dengan klik (YA/TIDAK), dikelompokkan per tema. Hasil ditampilkan dalam panel: banner risiko, jenis penipuan terdeteksi, alasan (aturan dan sumber yang dipakai), saran tindakan, proses Forward Chaining per siklus, dan batas keberlakuan. Menu "Contoh cepat" mengisi jawaban otomatis sesuai tiga kasus uji di bawah. Pada kasus tanpa kesimpulan, aplikasi menjelaskan aturan mana yang baru sebagian terpenuhi.
+`Gui.py` menampilkan 14 pertanyaan sebagai kartu yang dipilih dengan klik (YA/TIDAK), dikelompokkan per tema. Hasil ditampilkan dalam panel: banner risiko, jenis penipuan terdeteksi, alasan (aturan dan sumber yang dipakai), saran tindakan, proses Forward Chaining per siklus, dan batas keberlakuan. Menu "Contoh cepat" mengisi jawaban otomatis sesuai tiga kasus uji di bawah. Pada kasus tanpa kesimpulan, aplikasi menjelaskan aturan mana yang baru sebagian terpenuhi.
 
 ## Tiga kasus uji (dan tambahan)
 
@@ -88,7 +88,6 @@ Bagian bawah hasil (saran tindakan dan batas keberlakuan):
 ![Kasus 3 bagian bawah](screenshot/kasus3b.png)
 
 Kasus 4 sampai 6 (lowongan kerja, belanja online, investasi ilegal) dicek otomatis oleh `Test.py`.
-Kasus 2 tidak menghasilkan kesimpulan karena satu-satunya aturan yang memakai tautan (R4) juga mensyaratkan "pesan tak diminta". Kasus 4 sampai 6 (lowongan kerja, belanja online, investasi ilegal) dicek otomatis oleh `Test.py`.
 
 ## Batas keberlakuan
 
